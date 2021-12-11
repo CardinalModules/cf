@@ -21,7 +21,7 @@ struct LABEL : Module {
 	};
 	
 
-		std::string fileDesc = "Right clic to write";
+		std::string fileDesc = "Right click to write";
 	
 
 
@@ -71,7 +71,7 @@ struct LABELDisplay : TransparentWidget {
 	void drawLayer(const DrawArgs &args, int layer) override {
 if (layer ==1) {
 shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/LEDCalculator.ttf"));
-std::string fD= module ? module->fileDesc : "Right clic to write";
+std::string fD= module ? module->fileDesc : "Right click to write";
 		std::string to_display = "";
 		for (int i=0; i<20; i++) to_display = to_display + fD[i];
 		nvgFontSize(args.vg, 24);
@@ -89,7 +89,18 @@ struct LABELItem : MenuItem {
 	LABEL *rm ;
 	void onAction(const event::Action &e) override {
 		
+#ifdef USING_CARDINAL_NOT_RACK
+		LABEL* rm = this->rm;
+		async_dialog_text_input("Label :", rm->fileDesc.c_str(), [rm](char* newText) {
+			textSelected(rm, newText);
+		});
+#else
 		char *path = osdialog_prompt(OSDIALOG_INFO, "Label :", "");
+		textSelected(rm, path);
+#endif
+	}
+
+	static void textSelected(LABEL* rm, char* path) {
 		if (path) {
 			rm->fileDesc = std::string(path);
 			free(path);

@@ -420,8 +420,19 @@ struct PLAYERItem : MenuItem {
 	PLAYER *rm ;
 	void onAction(const event::Action &e) override {
 		
+#ifdef USING_CARDINAL_NOT_RACK
+		PLAYER* rm = this->rm;
+		async_dialog_filebrowser(false, nullptr, "Load Sample", [rm](char* path) {
+			pathSelected(rm, path);
+		});
+#else
 		//std::string dir = module->lastPath.empty() ? NULL : rack::string::directory(module->lastPath); /////////////////////////////////////////
 		char *path = osdialog_file(OSDIALOG_OPEN, NULL, NULL, NULL);        //////////dir.c_str(),
+		pathSelected(rm, path);
+#endif
+	}
+
+	static void pathSelected(PLAYER* rm, char* path) {
 		if (path) {
 			rm->play = false;
 			rm->reload = true;
