@@ -105,7 +105,7 @@ struct ALGDisplay : TransparentWidget {
 	};
 
 	void draw(const DrawArgs &args) override {
-std::shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/ArialBlack.ttf"));
+std::shared_ptr<Font> font = APP->window->uiFont;
 
 //	if (font) {
 			nvgFontFaceId(args.vg, font->handle);
@@ -117,7 +117,7 @@ std::shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance,
 	}
 
 	void drawLayer(const DrawArgs &args, int layer) override {
-std::shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/ArialBlack.ttf"));
+std::shared_ptr<Font> font = APP->window->uiFont;
 //	if (font) {
 		if (layer ==1) {
 			float val = module ? module->OP_STATE : 0;

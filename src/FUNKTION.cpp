@@ -121,7 +121,7 @@ struct FUNKTIONDisplay : TransparentWidget {
 	
 	void drawLayer(const DrawArgs &args, int layer) override {
 if (layer ==1) {
-shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/LEDCalculator.ttf"));
+shared_ptr<Font> font = APP->window->loadFont(asset::plugin(pluginInstance, "res/VT323-Regular.ttf"));
 std::string to_display= module ? module->fctDesc : "sin";
 		to_display.resize(14);
 		nvgFontSize(args.vg, 24);
