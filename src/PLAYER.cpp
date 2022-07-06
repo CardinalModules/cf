@@ -422,7 +422,7 @@ struct PLAYERItem : MenuItem {
 		
 #ifdef USING_CARDINAL_NOT_RACK
 		PLAYER* rm = this->rm;
-		async_dialog_filebrowser(false, nullptr, "Load Sample", [rm](char* path) {
+		async_dialog_filebrowser(false, nullptr, nullptr, "Load Sample", [rm](char* path) {
 			pathSelected(rm, path);
 		});
 #else
