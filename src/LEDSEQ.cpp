@@ -32,7 +32,7 @@ bool editState = false ;
 dsp::SchmittTrigger rstTrigger;
 dsp::SchmittTrigger upTrigger;
 dsp::SchmittTrigger editTrigger;
-dsp::SchmittTrigger ledTrigger[80] ={};
+dsp::SchmittTrigger ledTrigger[80];
 
 
 	LEDSEQ() {

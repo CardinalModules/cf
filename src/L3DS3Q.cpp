@@ -30,7 +30,7 @@ bool editState = false ;
 dsp::SchmittTrigger rstTrigger;
 dsp::SchmittTrigger upTrigger;
 dsp::SchmittTrigger editTrigger;
-dsp::SchmittTrigger ledTrigger[80] ={};
+dsp::SchmittTrigger ledTrigger[80];
 
 	L3DS3Q() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
